@@ -31,4 +31,7 @@ public interface IRobot {
        
     
     public double getBraquage();
+    
+    public String getName();
+    public String getRole();
 }
