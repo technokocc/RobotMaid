@@ -18,9 +18,7 @@ public class RobotMaid implements IRobot {
 		this.position = position;
 		this.direction = direction;
 	}
-
-
-
+	
 	public void action(Commande c){
 		
 	}
@@ -51,5 +49,15 @@ public class RobotMaid implements IRobot {
 	public double getBraquage() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public String getRole() {
+		return this.role;
 	}
 }

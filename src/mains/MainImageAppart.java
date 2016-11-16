@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import data.Data;
 import appart.AppartFactoryFromFile;
 import appart.IAppart;
 import geometrie.TerrainTools;
@@ -25,6 +26,11 @@ public class MainImageAppart {
 		SwingFXUtils.fromFXImage(im, bimg) ;
 		
 		ImageIO.write(bimg, "png", new File("ImageAppart/"+c.getName()+".png"));
+		/*Dom : test de mon code (package data classe data ..)
+		 * Data d = new Data();
+		d.setLienPlan("fichiers/terrain.txt");
+		d.init();
+		*/
 
 	}
 
