@@ -63,9 +63,7 @@ public class TerrainTools {
         
         WritableImage image = new WritableImage(im.getWidth(), im.getHeight()) ;
         
-        SwingFXUtils.toFXImage(im, image) ;
-       
-        System.out.println("Bufff" + image.getHeight());
+        SwingFXUtils.toFXImage(im, image) ;              
         
         return image ;
 	}

@@ -6,6 +6,7 @@ import appart.AppartFactoryFromFile;
 import appart.IAppart;
 import geometrie.TerrainTools;
 import graphique.Fenetre;
+import graphique.SimulationParameters;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,8 +31,10 @@ public class TestIHM extends Application{
 		Fenetre fen = new Fenetre(a,TerrainTools.imageFromAppart(a.getMatrix()));	
 		final Scene scene = new Scene(fen.getPanel());
 		primaryStage.setScene(scene);
-		primaryStage.setWidth(1045);
-		primaryStage.setHeight(900);
+		primaryStage.setWidth(SimulationParameters.WINDOW_WIDTH);
+		primaryStage.setHeight(SimulationParameters.WINDOW_HEIGHT);
+		primaryStage.setResizable(SimulationParameters.WINDOW_RESIZABLE);
+		primaryStage.setTitle(SimulationParameters.WINDOW_TILE);
 		primaryStage.show();
 	}
 
