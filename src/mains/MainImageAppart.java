@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 import data.Data;
 import appart.AppartFactoryFromFile;
 import appart.IAppart;
+import controller.IMenageService;
+import controller.Menage;
 import geometrie.TerrainTools;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;

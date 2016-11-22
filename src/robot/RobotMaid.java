@@ -9,7 +9,7 @@ public class RobotMaid implements IRobot {
 	private double vitesse ;
 	private Vecteur position;
 	private Vecteur direction;
-	
+
 	public RobotMaid(String name, String role, double vitesse, Vecteur position, Vecteur direction) {
 		super();
 		this.name = name;
