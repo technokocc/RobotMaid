@@ -60,4 +60,22 @@ public class RobotMaid implements IRobot {
 	public String getRole() {
 		return this.role;
 	}
+
+	@Override
+	public void setPosition(Vecteur position) {
+		this.position = position ;		
+	}
+
+	@Override
+	public void setVitesse(Double vitesse) {
+		// TODO Auto-generated method stub
+		this.vitesse = vitesse ;
+	}
+
+	@Override
+	public void setDirection(Vecteur direction) {
+		// TODO Auto-generated method stub
+		this.direction = direction ;
+	}
+	
 }

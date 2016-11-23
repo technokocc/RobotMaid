@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import data.Data;
 import appart.AppartFactoryFromFile;
 import appart.IAppart;
 import geometrie.TerrainTools;

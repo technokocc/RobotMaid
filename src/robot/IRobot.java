@@ -24,6 +24,12 @@ public interface IRobot {
     public Vecteur getPosition();
     
     
+    public void setPosition(Vecteur position) ;
+    
+    public void setVitesse(Double vitesse) ;
+    
+    public void setDirection(Vecteur direction) ;
+    
     /**    
      * @return : La direction : le déplacement est naturel.    
      */
@@ -33,5 +39,6 @@ public interface IRobot {
     public double getBraquage();
     
     public String getName();
+    
     public String getRole();
 }

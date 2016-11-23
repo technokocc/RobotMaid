@@ -16,4 +16,8 @@ public class SimulationParameters {
 	public final static double INFOS_POSITION_Y 	= 10 ;
 	public final static double INFOS_RECT_WIDTH 	= 400 ;
 	public final static double INFOS_RECT_HEIGHT 	= 300 ;
+	
+	public final static double ROBOT_X_INITIAL		= 15 ;
+	public final static double ROBOT_Y_INITIAL		= 170 ;
+	
 }

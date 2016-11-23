@@ -1,15 +1,12 @@
 package graphique;
 
-import java.awt.CardLayout;
-import java.awt.Robot;
-
 import appart.IAppart;
+import data.IReadService;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -21,6 +18,11 @@ public class Fenetre {
 	private ImageView im, robotAvatar;
 	private Image robotImage ;
 	private Group panel ;
+	private int y = 500 ;
+	
+	
+	private IReadService data ; 
+
 	
 	public Fenetre(IAppart a, Image im) {
 		super();
@@ -29,13 +31,22 @@ public class Fenetre {
 		panel = new Group() ;
 		this.robotImage = new Image("file:ImageAppart/aspirateur.jpg") ;
 		this.robotAvatar = new ImageView(this.robotImage) ;
+		
 	}
 
+	public void dataReadService(IReadService data){
+		this.data = data ;
+	}
+	
 	public Parent getPanel(){				
-		Circle robot = new Circle(500, 500, 20, Color.YELLOW) ;	
+		Circle robot1 = new Circle(data.getRobotPosition().getX(), data.getRobotPosition().getY(), 5, Color.YELLOW) ;
 		
-		robotAvatar.setTranslateX(500);
-		robotAvatar.setTranslateY(500);
+		System.out.println("Fenetre : " + data.getRobotPosition().toString()) ;
+		
+		//Circle robot2 = new Circle(15, 100,5,Color.ANTIQUEWHITE) ;
+		robotAvatar.setTranslateX(data.getRobotPosition().getY());
+		robotAvatar.setTranslateY(data.getRobotPosition().getX());
+		
 	    robotAvatar.setScaleX(0.35);
 	    robotAvatar.setScaleY(0.35);
 		
@@ -45,9 +56,9 @@ public class Fenetre {
 		Text logTitle = new Text(SimulationParameters.INFOS_POSITION_X+130,SimulationParameters.LOG_POSITION_Y+50, "Les Logs");
 		logTitle.setFont(new Font(30));
 		
-		
-		this.panel.getChildren().addAll(im,robotAvatar,getInfos(),getLog(),infosTitle,logTitle) ;		
-		return this.panel ;
+		panel = new Group();
+		panel.getChildren().addAll(im,robot1,getInfos(),getLog(),infosTitle,logTitle) ;		
+		return panel ;
 	}
 	
 	

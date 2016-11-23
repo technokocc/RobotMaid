@@ -1,36 +1,27 @@
 package data;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import appart.IAppart;
 import geometrie.Terrain;
 import geometrie.Vecteur;
-import appart.AppartFactoryFromFile;
-import appart.AppartImpl;
-import appart.IAppart;
 import robot.IRobot;
-import robot.RobotFactory;
-import robot.RobotMaid;
 
 public class Data implements IData{
 	private IRobot robot;
-	private AppartImpl plan;
+	private IAppart plan;
 	private String lienPlan;
+	
 	public Data(){
 		
 	}
 	
 	@Override
-	public void init() {
-		robot = RobotFactory.getRobotMaid("toto", "titi"); 
-		try {
-			plan = AppartFactoryFromFile.build(this.getLienPlan());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void init(IRobot robot, IAppart plan) {
+		this.robot = robot ; 
+		this.plan = plan ;
 	}
-	
+		
 	@Override
 	public Vecteur getRobotPosition() {
 		return robot.getPosition();
@@ -54,6 +45,7 @@ public class Data implements IData{
 	@Override
 	public Vecteur setRobotPosition(Vecteur position) {
 		// TODO Auto-generated method stub
+		this.robot.setPosition(position);
 		return null;
 	}
 	@Override
