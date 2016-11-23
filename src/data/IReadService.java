@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 
+import algorithme.IStrategy;
 import geometrie.Terrain;
 import geometrie.Vecteur;
 
@@ -25,4 +26,7 @@ public interface IReadService {
 	public double getDist(int i, int j);
 	public Terrain [][] getMatrix();
 	public String getName();
+	
+	// Strategie
+	public IStrategy getStrategie() ;
 }

@@ -2,24 +2,28 @@ package data;
 
 import java.util.ArrayList;
 
+import algorithme.IStrategy;
 import appart.IAppart;
 import geometrie.Terrain;
+import geometrie.TerrainTools;
 import geometrie.Vecteur;
 import robot.IRobot;
+import robot.RobotException;
 
 public class Data implements IData{
 	private IRobot robot;
 	private IAppart plan;
 	private String lienPlan;
-	
+	private IStrategy strategie ;
 	public Data(){
 		
 	}
 	
 	@Override
-	public void init(IRobot robot, IAppart plan) {
+	public void init(IRobot robot, IAppart plan,IStrategy strategie) {
 		this.robot = robot ; 
 		this.plan = plan ;
+		this.strategie = strategie ;
 	}
 		
 	@Override
@@ -130,6 +134,20 @@ public class Data implements IData{
 	
 	public void setLienPlan(String s) {
 		lienPlan = s;
+	}
+	
+	
+	/*###################################################################################################################"*/
+
+	@Override
+	public IStrategy getStrategie() {
+		// TODO Auto-generated method stub
+		return this.strategie;
+	}
+
+	@Override
+	public void doAction() throws RobotException {				
+		this.robot.action(this.strategie.getCommande());
 	}
 
 }

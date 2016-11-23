@@ -1,6 +1,7 @@
 package graphique;
 
 import appart.IAppart;
+import configs.SimulationParameters;
 import data.IReadService;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -39,25 +40,30 @@ public class Fenetre {
 	}
 	
 	public Parent getPanel(){				
-		Circle robot1 = new Circle(data.getRobotPosition().getX(), data.getRobotPosition().getY(), 5, Color.YELLOW) ;
 		
-		System.out.println("Fenetre : " + data.getRobotPosition().toString()) ;
-		
-		//Circle robot2 = new Circle(15, 100,5,Color.ANTIQUEWHITE) ;
+		Circle robot1 = new Circle(data.getRobotPosition().getX(), data.getRobotPosition().getY(), 5, Color.YELLOW) ;			
+			
 		robotAvatar.setTranslateX(data.getRobotPosition().getY());
 		robotAvatar.setTranslateY(data.getRobotPosition().getX());
 		
 	    robotAvatar.setScaleX(0.35);
 	    robotAvatar.setScaleY(0.35);
 		
-		Text infosTitle = new Text(SimulationParameters.INFOS_POSITION_X+100,50, "Informations");
+		Text infosTitle = new Text(SimulationParameters.INFOS_POSITION_X+100,SimulationParameters.INFOS_POSITION_Y+50, "Informations");
 		infosTitle.setFont(new Font(30));
 		
 		Text logTitle = new Text(SimulationParameters.INFOS_POSITION_X+130,SimulationParameters.LOG_POSITION_Y+50, "Les Logs");
 		logTitle.setFont(new Font(30));
 		
+		Text batterieInfos = new Text(SimulationParameters.INFOS_POSITION_X+20,SimulationParameters.INFOS_POSITION_Y+100, "Battérie : 100%");
+		batterieInfos.setFont(new Font(15));
+		
+		Text positionInfos = new Text(SimulationParameters.INFOS_POSITION_X+20,
+				SimulationParameters.INFOS_POSITION_Y+150, "Position : " + data.getRobotPosition().toString());
+		positionInfos.setFont(new Font(15));
+		
 		panel = new Group();
-		panel.getChildren().addAll(im,robot1,getInfos(),getLog(),infosTitle,logTitle) ;		
+		panel.getChildren().addAll(im,robot1,getInfos(),getLog(),infosTitle,logTitle,batterieInfos,positionInfos) ;		
 		return panel ;
 	}
 	

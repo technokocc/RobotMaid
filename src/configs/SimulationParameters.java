@@ -1,4 +1,4 @@
-package graphique;
+package configs;
 
 public class SimulationParameters {
 
@@ -20,4 +20,8 @@ public class SimulationParameters {
 	public final static double ROBOT_X_INITIAL		= 15 ;
 	public final static double ROBOT_Y_INITIAL		= 170 ;
 	
+	//public final static double [] theta = {0 ,-Math.PI,-Math.PI/2,-Math.PI/3, -Math.PI/6, -Math.PI/12,-Math.PI/20,-Math.PI/25,-Math.PI/30,Math.PI/30, 
+	//		-Math.PI/25,Math.PI/20, Math.PI/12, Math.PI/6, Math.PI/3,Math.PI/2,Math.PI };
+	
+	public final static double [] theta = {-Math.PI,0,Math.PI };
 }

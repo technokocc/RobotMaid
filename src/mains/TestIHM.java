@@ -2,15 +2,19 @@ package mains;
 
 import java.io.IOException;
 
+import algorithme.IRadar;
+import algorithme.IStrategy;
+import algorithme.RadarClassique;
+import algorithme.StrategyRadar;
 import appart.AppartFactoryFromFile;
 import appart.IAppart;
+import configs.SimulationParameters;
 import controller.IMenageService;
 import controller.Menage;
 import data.Data;
 import data.IData;
 import geometrie.TerrainTools;
 import graphique.Fenetre;
-import graphique.SimulationParameters;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -29,7 +33,8 @@ public class TestIHM extends Application{
 	private static Fenetre fen ;
 	private static IData data ;
 	private static IMenageService menage ;
-	
+	private static IRadar radar ;	
+	private static IStrategy strategie ;
 	
 	public static void main(String[] args) throws RobotException, IOException {
 		appartement = AppartFactoryFromFile.build("fichiers/terrain.txt") ;
@@ -37,8 +42,11 @@ public class TestIHM extends Application{
 		fen = new Fenetre(appartement,TerrainTools.imageFromAppart(appartement.getMatrix()));	
 		data = new Data() ;
 		menage =  new Menage() ;
-
-		data.init(robot,appartement);
+		
+		radar = new RadarClassique(robot, appartement, SimulationParameters.theta) ;
+		strategie= new StrategyRadar(robot,radar);
+		
+		data.init(robot,appartement,strategie);
 		menage.init();
 		
 		((Menage)menage).bindDataService(data);

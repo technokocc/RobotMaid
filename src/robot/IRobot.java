@@ -9,7 +9,7 @@ public interface IRobot {
 	 * La vitesse est maximale s'il ne detecte pas d'obstacles.
 	 * La rotation est nulle si on veut aller tout droit.	
 	 */
-	public void action(Commande c) ;
+	public void action(Commande c) throws RobotException;
 	
 	
 	/**	 
@@ -29,6 +29,8 @@ public interface IRobot {
     public void setVitesse(Double vitesse) ;
     
     public void setDirection(Vecteur direction) ;
+    
+    public double getMaxTurn() ;
     
     /**    
      * @return : La direction : le déplacement est naturel.    

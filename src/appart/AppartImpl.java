@@ -29,10 +29,8 @@ public class AppartImpl implements IAppart {
 	}
 
 	@Override
-	public Terrain getTerrain(Vecteur v) {
-		
-		return this.track[(int) v.getX()][(int) v.getY()];
-	
+	public Terrain getTerrain(Vecteur v) {			
+		return this.track[(int) v.getX()][(int) v.getY()];				
 	}
 
 	@Override

@@ -8,7 +8,6 @@ public interface IWriteService {
 	public Vecteur setRobotDirection(Vecteur direction);
 	public String setRobotName(String name);
 	public String setRobotRole(String role);
-	public double setRobotVitesse(double vitesse);
-	
+	public double setRobotVitesse(double vitesse);	
 	
 }
