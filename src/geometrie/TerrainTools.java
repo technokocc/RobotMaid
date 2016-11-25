@@ -39,7 +39,10 @@ public class TerrainTools {
 	
 	public static boolean isRunnable(Terrain t){
 		
-		if(t.equals(Terrain.Piece) || t.equals(Terrain.Mur) || t.equals(Terrain.Obstacle) || t.equals(Terrain.BandeTour) ) return false;
+		if(t.equals(Terrain.Jacozi) || t.equals(Terrain.Mur) ||
+				t.equals(Terrain.Buffet) || t.equals(Terrain.Canape ) ||
+				t.equals(Terrain.Siege) || t.equals(Terrain.Table) ||
+				t.equals(Terrain.Visualisation)  )return false;
 		
 		return true;
 	}

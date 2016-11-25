@@ -15,17 +15,23 @@ public class Data implements IData{
 	private IAppart plan;
 	private String lienPlan;
 	private IStrategy strategie ;
+	private ArrayList<Vecteur> trajet ;
+	private boolean state ;
+	private double percent ;
+
 	public Data(){
-		
+		trajet = new ArrayList<Vecteur>();
 	}
-	
+
 	@Override
 	public void init(IRobot robot, IAppart plan,IStrategy strategie) {
 		this.robot = robot ; 
 		this.plan = plan ;
 		this.strategie = strategie ;
+		state = true ;
+		percent = 0 ;
 	}
-		
+
 	@Override
 	public Vecteur getRobotPosition() {
 		return robot.getPosition();
@@ -47,32 +53,28 @@ public class Data implements IData{
 		return robot.getVitesse();
 	}
 	@Override
-	public Vecteur setRobotPosition(Vecteur position) {
-		// TODO Auto-generated method stub
-		this.robot.setPosition(position);
-		return null;
+	public void setRobotPosition(Vecteur position) {
+		this.robot.setPosition(position);		
 	}
 	@Override
-	public Vecteur setRobotDirection(Vecteur direction) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setRobotDirection(Vecteur direction) {
+		robot.setDirection(direction);
 	}
 	@Override
-	public String setRobotName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setRobotName(String name) {
+
 	}
+
 	@Override
-	public String setRobotRole(String role) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setRobotRole(String role) {
+
 	}
+
 	@Override
-	public double setRobotVitesse(double vitesse) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setRobotVitesse(double vitesse) {
+
 	}
-//################################# Getter AppartImpl ###########################""""
+	//################################# Getter AppartImpl ###########################""""
 	@Override
 	public Terrain getTerrain(int i, int j) {
 		return plan.getTerrain(i, j);
@@ -127,16 +129,16 @@ public class Data implements IData{
 	public String getName() {
 		return plan.getName();
 	}
-	
+
 	public String getLienPlan() {
 		return lienPlan;
 	}
-	
+
 	public void setLienPlan(String s) {
 		lienPlan = s;
 	}
-	
-	
+
+
 	/*###################################################################################################################"*/
 
 	@Override
@@ -146,8 +148,66 @@ public class Data implements IData{
 	}
 
 	@Override
-	public void doAction() throws RobotException {				
+	public void doAction() throws RobotException {	
+		this.percent += (16*10) ;
 		this.robot.action(this.strategie.getCommande());
+	}
+
+	@Override
+	public ArrayList<Vecteur> getTrajet() {		
+		return robot.getTrajet();
+	}
+
+	@Override
+	public void addTrajet(Vecteur v) {		
+		robot.setTrajet(v);
+
+	}
+
+	@Override
+	public ArrayList<String> getRobotLogs() {
+		return this.robot.getLog();
+	}
+
+	@Override
+	public void addRobotLog(String message) {
+		this.robot.setLog(message);		
+	}
+
+	@Override
+	public double getRobotBatterie() {
+		return robot.getBatterie() ;
+	}
+
+	@Override
+	public void setRobotBatterie(double batterie) {
+		robot.setBatterie(batterie);
+	}
+
+	@Override
+	public boolean dataPlay() {
+		return state ;
+	}
+
+	@Override
+	public void setdataPlay(boolean state) {
+		this.state = state ;
+	}
+
+	@Override
+	public double getPourcentage() {
+		return (this.percent * 100 / plan.getPourtencage()) ;
+	}
+
+	@Override
+	public void setPourcentage(double pourcentage) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IAppart getAppart() {
+		return plan ;
 	}
 
 }

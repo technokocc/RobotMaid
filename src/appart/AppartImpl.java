@@ -2,16 +2,21 @@ package appart;
 
 import java.util.ArrayList;
 
+import algorithme.Dijkstra;
 import geometrie.Terrain;
+import geometrie.TerrainTools;
 import geometrie.Vecteur;
 
 public class AppartImpl implements IAppart {
 	
+	private Dijkstra dijk ; 
 	private Terrain[][] track;
 	private Vecteur depart;
 	private Vecteur dirDepart, dirArrivee ;
 	private String nomCircuit;
 	
+	private double pourcentage ;
+	private double totalpercent ;
 	
 	public AppartImpl(Terrain[][] track, Vecteur depart, Vecteur dirDepart,
 			Vecteur dirArrivee,String nomCircuit) {
@@ -21,7 +26,23 @@ public class AppartImpl implements IAppart {
 		this.dirDepart = dirDepart;
 		this.dirArrivee = dirArrivee;
 		this.nomCircuit = nomCircuit ;				
+		dijk = new Dijkstra(this);		
+		pourcentage = 0 ;
+	}
+	
+	public int getTotalPercent(){
 		
+		int ct = 0 ;
+		
+		for(int i = 0; i < track.length ; i++){
+					
+			for(int j = 0 ; j < track[0].length ; j++){
+				if(TerrainTools.isRunnable(track[i][j]))
+					ct++ ;
+			}
+		}
+			
+		return ct ;	
 	}
 	
 	public Terrain getTerrain(int i, int j){
@@ -70,7 +91,7 @@ public class AppartImpl implements IAppart {
 		for(int i = 0 ; i < track.length ; i++ ){
 			for(int j = 0 ; j < track[0].length ; j++){
 				
-				if(track[i][j] == Terrain.BandeTour) res.add(new Vecteur(i,j));
+				if(track[i][j] == Terrain.Jacozi) res.add(new Vecteur(i,j));
 			}
 		}
 		return res;
@@ -79,7 +100,7 @@ public class AppartImpl implements IAppart {
 	@Override
 	public double getDist(int i, int j) {
 		
-		return 0  ;
+		return dijk.getTabdist(i, j);
 	}
 
 	@Override
@@ -91,5 +112,16 @@ public class AppartImpl implements IAppart {
 	public String getName(){
 		
 		return this.nomCircuit.replaceAll("fichiers/", "");
+	}
+
+	@Override
+	public double getPourtencage() {		
+		return getTotalPercent();
+	}
+
+	@Override
+	public void setPourcentage(Double pourcentage) {
+		// TODO Auto-generated method stub
+		
 	}
 }

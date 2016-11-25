@@ -20,21 +20,23 @@ public class StrategyRadar implements IStrategy {
 	public Commande getCommande(){
 
 		double angle = radar.thetas()[radar.getBestIndex()];
+				
 		double alpha = angle/robot.getBraquage() ;
 		double maxturn = robot.getMaxTurn() ;
 
-		double acc=0.5;
+		double acc=1;
+		
 		double turn = Math.signum(alpha) * Math.min(Math.abs(alpha), maxturn) ;
 
-		if( Math.abs(alpha) < 14*maxturn ){	
-			acc = 0.5 ;
+		if( Math.abs(alpha) < 24*maxturn ){	
+			acc = 1 ;
 		}
 		else
-			acc = -1;
+			acc = 0.5;
 
 		if(robot.getVitesse() < 0.2)
-			acc = 0.4;
-
+			acc = 1;	
+		
 		return new Commande(acc,turn);
 	}
 

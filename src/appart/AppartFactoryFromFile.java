@@ -19,8 +19,8 @@ public class AppartFactoryFromFile {
 		int nbColonnes , nbLignes;
 		
 		Vecteur depart=null ;
-		Vecteur dirD = new Vecteur(0,1) ;
-		Vecteur dirA = new Vecteur(0,1) ;
+		Vecteur dirD = new Vecteur(-1,0) ;
+		Vecteur dirA = new Vecteur(-1,0) ;
 		
 		File fichier = new File(filename);
 		InputStream file = new FileInputStream(fichier);

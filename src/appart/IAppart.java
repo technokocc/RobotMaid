@@ -19,4 +19,7 @@ public interface IAppart {
 	public Terrain [][] getMatrix();
 	public String getName();
 	
+	public double getPourtencage();
+	public void setPourcentage(Double pourcentage) ;
+	
 }

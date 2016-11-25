@@ -5,6 +5,7 @@ import java.io.IOException;
 import algorithme.IRadar;
 import algorithme.IStrategy;
 import algorithme.RadarClassique;
+import algorithme.RadarDijkstra;
 import algorithme.StrategyRadar;
 import appart.AppartFactoryFromFile;
 import appart.IAppart;
@@ -14,11 +15,14 @@ import controller.Menage;
 import data.Data;
 import data.IData;
 import geometrie.TerrainTools;
+import geometrie.Vecteur;
 import graphique.Fenetre;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import robot.IRobot;
@@ -37,20 +41,21 @@ public class TestIHM extends Application{
 	private static IStrategy strategie ;
 	
 	public static void main(String[] args) throws RobotException, IOException {
-		appartement = AppartFactoryFromFile.build("fichiers/terrain.txt") ;
+		
+		appartement = AppartFactoryFromFile.build("fichiers/planAppart.txt") ;
 		robot = RobotFactory.getRobotMaid("YAMADO", "Robot Maid") ;	
 		fen = new Fenetre(appartement,TerrainTools.imageFromAppart(appartement.getMatrix()));	
 		data = new Data() ;
 		menage =  new Menage() ;
 		
 		radar = new RadarClassique(robot, appartement, SimulationParameters.theta) ;
-		strategie= new StrategyRadar(robot,radar);
-		
-		data.init(robot,appartement,strategie);
-		menage.init();
+		strategie= new StrategyRadar(robot,radar);			
 		
 		((Menage)menage).bindDataService(data);
 		fen.dataReadService(data);
+		
+		data.init(robot,appartement,strategie);
+		menage.init();
 		
 		launch(args);
 	}
@@ -66,6 +71,19 @@ public class TestIHM extends Application{
 		primaryStage.setResizable(SimulationParameters.WINDOW_RESIZABLE);
 		primaryStage.setTitle(SimulationParameters.WINDOW_TILE);
 
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+		      @Override
+		        public void handle(KeyEvent event) {
+		          if (event.getCode()==KeyCode.LEFT)((Menage)menage).changeRobotDirection(new Vecteur(-1,0));
+		          if (event.getCode()==KeyCode.RIGHT) ((Menage)menage).changeRobotDirection(new Vecteur(1,0));
+		          if (event.getCode()==KeyCode.UP) ((Menage)menage).changeRobotDirection(new Vecteur(0,-1));
+		          if (event.getCode()==KeyCode.DOWN) ((Menage)menage).changeRobotDirection(new Vecteur(0,1));
+		          if (event.getCode()==KeyCode.P) ((Menage)menage).pauseResume();	
+		          if (event.getCode()==KeyCode.R) ((Menage)menage).setRapidite();			          
+		          event.consume();
+		        }
+		    });
+		
 		primaryStage.setOnShown(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {
@@ -75,7 +93,7 @@ public class TestIHM extends Application{
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
-			public void handle(WindowEvent event) {
+			public void handle(WindowEvent event) {				
 				menage.stop();
 			}
 		});

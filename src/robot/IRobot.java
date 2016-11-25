@@ -1,28 +1,16 @@
 package robot;
 
+import java.util.ArrayList;
+
 import geometrie.Vecteur;
 
 public interface IRobot {
 	
-	/**
-	 * @param c : La commande (la vitesse et l'angle de rotation)
-	 * La vitesse est maximale s'il ne detecte pas d'obstacles.
-	 * La rotation est nulle si on veut aller tout droit.	
-	 */
 	public void action(Commande c) throws RobotException;
 	
-	
-	/**	 
-	 * @return : la vitesse courrante du robot.
-	 */
 	public double getVitesse();
-	
-	
-	/**	
-	 * @return : La position du robot.
-	 */
-    public Vecteur getPosition();
-    
+		
+    public Vecteur getPosition();    
     
     public void setPosition(Vecteur position) ;
     
@@ -32,15 +20,23 @@ public interface IRobot {
     
     public double getMaxTurn() ;
     
-    /**    
-     * @return : La direction : le déplacement est naturel.    
-     */
     public Vecteur getDirection();
        
+    public ArrayList<String> getLog() ;
+    
+    public void setLog(String message) ;
+    
+    public ArrayList<Vecteur> getTrajet();
+    
+    public void setTrajet(Vecteur position) ;
     
     public double getBraquage();
     
     public String getName();
     
     public String getRole();
+    
+    public double getBatterie();
+    
+    public void setBatterie(double batterie) ;
 }

@@ -4,13 +4,12 @@ import java.awt.Color;
 
 public enum Terrain {
 	
-		   Couloir, Piece, Mur, Obstacle, BandeTour,Eau;
+		Canape, Siege, Table, Buffet, Visualisation,Jacozi,Mur,Espace,Endline;
 
-		   public static char[] conversion =
-		            {'c', 'p', 'm', 'o', 't','e'};
+	   public static char[] conversion =
+	            {'c', 's', 't', 'b', 'v','j','m','e','a'};
 
-		   public static Color[] convColor = {Color.white, Color.gray,
-		       Color.black, Color.DARK_GRAY,Color.MAGENTA,Color.BLUE};
-		 
-	
+	   public static Color[] convColor = {Color.BLACK, Color.YELLOW,
+		       Color.black, Color.ORANGE,Color.MAGENTA,Color.BLUE,Color.RED,Color.LIGHT_GRAY,Color.GREEN};	   
+		 	
 }

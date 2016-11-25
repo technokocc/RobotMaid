@@ -27,7 +27,7 @@ public class RadarClassique implements IRadar {
 		
 		d.autoRotat(angle);
 		
-		Vecteur next = new Vecteur(p.getY(),p.getY()) ;
+		Vecteur next = new Vecteur(p.getY(),p.getX()) ;
 		
 		System.out.println("Position : "+p.toString());
 		
@@ -76,7 +76,7 @@ public class RadarClassique implements IRadar {
 		
 		for(int i = 0 ; i < faisceauAngle.length ; i++){
 			
-			if(score[i] >= max){
+			if(score[i] > max){
 				index = i ;
 				max = score[i] ;
 			}

@@ -7,5 +7,5 @@ import robot.RobotException;
 
 public interface IData extends IReadService, IWriteService{
 	public void init(IRobot robot,IAppart appart,IStrategy strategie);
-	public void doAction() throws RobotException ;
+	public void doAction() throws RobotException ;	
 }
