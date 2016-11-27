@@ -29,7 +29,7 @@ public class RadarClassique implements IRadar {
 		
 		Vecteur next = new Vecteur(p.getY(),p.getX()) ;
 		
-		System.out.println("Position : "+p.toString());
+		//System.out.println("Position : "+p.toString());
 		
 		p = next ;
 		

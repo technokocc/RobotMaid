@@ -1,6 +1,10 @@
 package mains;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
 
 import algorithme.IRadar;
 import algorithme.IStrategy;
@@ -42,6 +46,9 @@ public class TestIHM extends Application{
 	
 	public static void main(String[] args) throws RobotException, IOException {
 		
+		
+		System.out.println("after start !");
+		
 		appartement = AppartFactoryFromFile.build("fichiers/planAppart.txt") ;
 		robot = RobotFactory.getRobotMaid("YAMADO", "Robot Maid") ;	
 		fen = new Fenetre(appartement,TerrainTools.imageFromAppart(appartement.getMatrix()));	
@@ -56,8 +63,16 @@ public class TestIHM extends Application{
 		
 		data.init(robot,appartement,strategie);
 		menage.init();
+
+
+		ThreadSocket thread = new ThreadSocket(menage);
+		thread.start();
 		
 		launch(args);
+		
+
+		
+		
 	}
 
 	@Override
@@ -108,5 +123,9 @@ public class TestIHM extends Application{
 		};
 		timer.start();
 	}
+	
+
+	
+
 
 }
