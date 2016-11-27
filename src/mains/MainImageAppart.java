@@ -19,7 +19,7 @@ public class MainImageAppart {
 
 	public static void main(String[] args) throws IOException {
 
-
+		/*
 		IAppart c = AppartFactoryFromFile.build("fichiers/terrain.txt") ;
 		Image im = TerrainTools.imageFromAppart(c.getMatrix());
 		
@@ -28,11 +28,16 @@ public class MainImageAppart {
 		SwingFXUtils.fromFXImage(im, bimg) ;
 		
 		ImageIO.write(bimg, "png", new File("ImageAppart/"+c.getName()+".png"));
+		*/
 		/*Dom : test de mon code (package data classe data ..)
 		 * Data d = new Data();
 		d.setLienPlan("fichiers/terrain.txt");
 		d.init();
 		*/
+		
+		IMenageService menageController = new Menage();
+		menageController.init();
+		menageController.start();
 
 	}
 

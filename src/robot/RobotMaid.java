@@ -18,9 +18,15 @@ public class RobotMaid implements IRobot {
 		this.position = position;
 		this.direction = direction;
 	}
-	
+
 	public void action(Commande c){
-		
+// TODO faire un dessin de l'algo pour determiner le meilleur chemin
+		this.vitesse = c.getAcc();
+		double turn = c.getTurn();
+		Vecteur vec = this.getVecteurAvecTurnCommande(turn);
+		this.direction = this.getPosition().additionNewVect(vec);
+		//this.direction = vec;
+		this.position.additionCour(vec);// deplacement lineaires
 	}
 
 	@Override
@@ -40,7 +46,7 @@ public class RobotMaid implements IRobot {
 		// TODO Auto-generated method stub
 		return this.direction;
 	}
-	
+
 	public String toString(){
 		return "My name is : "+name+". I am a Robot Maid and my role is : "+role ;
 	}
@@ -59,5 +65,16 @@ public class RobotMaid implements IRobot {
 	@Override
 	public String getRole() {
 		return this.role;
+	}
+	
+	private Vecteur getVecteurAvecTurnCommande(double turn){
+		if(turn == 0){
+			return new Vecteur(0,0);
+		}
+		if(turn == 1){
+			return new Vecteur(1,0);
+		}
+		
+		return new Vecteur(0,0);		
 	}
 }

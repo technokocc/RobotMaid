@@ -4,14 +4,15 @@ public class Vecteur {
 
 	private double x , y ;
 
-	public Vecteur(double x, double y) {
+	public Vecteur(double x, double y){
+
 		super();
 		this.x = x;
 		this.y = y;
 	}
 
 	public Vecteur(Vecteur current, Vecteur s) {
-		
+
 			x = s.x - current.x ;
 			y = s.y - current.y ;
 	}
@@ -36,7 +37,6 @@ public class Vecteur {
 		return "Vecteur [x=" + x + ", y=" + y + "]";
 	}
 
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,49 +61,48 @@ public class Vecteur {
 		
 		return res;
 	}
-	
+
 	public double norme(){
-		
+
 		double res = 0;
-		
 		double x2 = (this.x * this.x) ;
 		double y2 = (this.y * this.y) ;
-		
+
 		res = Math.sqrt(x2 + y2 );
 		return res ;
-		
+
 	}
-	
+
 	public Vecteur additionNewVect(Vecteur v){
-		
+
 		Vecteur res = new Vecteur(0,0);
-		
+
 		res.x = v.x + this.x ;
 		res.y = v.y + this.y ;
-		
+
 		return res;
-				
+
 	}
-	
+
 	public void additionCour(Vecteur v){
-		
+
 		this.x += v.x ;
 		this.y += v.y ;
 	}
-	
+
 	public Vecteur soustractionNewVect(Vecteur v){
-		
+
 		Vecteur res = new Vecteur(0,0);
-		
+
 		res.x = this.x - v.x ;
 		res.y = this.y - v.y ;
-		
+
 		return res ;
-		
+
 	}
 	
 	public void soustractionCour(Vecteur v){
-		
+
 		this.x -= v.x;
 		this.y -= v.y;
 	}
@@ -121,9 +120,9 @@ public class Vecteur {
 		
 		return res;
 	}
-	
+
 	public double angle(Vecteur cible){
-		
+
 		double tmp = this.produitScalaire(cible)/(norme()*cible.norme());
 		tmp = Math.min(1,  tmp);
 		tmp = Math.max(-1, tmp);
@@ -153,21 +152,21 @@ public class Vecteur {
 	}
 	
 	public Vecteur rotationNewVect(double angle){
-		
+
 		Vecteur res = new Vecteur(0,0);
-		
+
 		res.x = (this.x * Math.cos(angle)) - (this.y * Math.sin(angle)) ;
 		res.y = (this.x * Math.sin(angle)) + (this.y * Math.sin(angle)) ;
-		
+
 		return res ;
 	}
 
 	public void toUnitVec() {
-		
+
 		double norme = this.norme() ;
-		
+
 		this.x /=norme ;
 		this.y /=norme ;
 	}
-	
+
 }

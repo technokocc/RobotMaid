@@ -11,6 +11,5 @@ public enum Terrain {
 
 		   public static Color[] convColor = {Color.white, Color.gray,
 		       Color.black, Color.DARK_GRAY,Color.MAGENTA,Color.BLUE};
-		 
-	
+
 }
