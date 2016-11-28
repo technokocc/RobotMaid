@@ -14,8 +14,8 @@ import geometrie.Vecteur;
 
 public class ThreadSocket implements Runnable{
     
-	public enum Direction{
-        Left, Right, Up, Down;
+	public enum Action{
+        Left, Right, Up, Down, Pause;
     }
 
 	private Thread thread;
@@ -56,21 +56,25 @@ public class ThreadSocket implements Runnable{
                 	String res =  reader.readLine();
                 	System.out.println(res);
                 	
-	  		        if (res.equals(Direction.Left.toString())){
+	  		        if (res.equals(Action.Left.toString())){
 	  		        	System.out.println("gauche");
 	  		        	((Menage)menage).changeRobotDirection(new Vecteur(-1,0));
 	  		        }
-	  		        if (res.equals(Direction.Right.toString())){
+	  		        if (res.equals(Action.Right.toString())){
 	  		        	System.out.println("Droite");
 	  		        	((Menage)menage).changeRobotDirection(new Vecteur(1,0));
 	  		        }
-	  		        if (res.equals(Direction.Up.toString())){
+	  		        if (res.equals(Action.Up.toString())){
 	  		        	System.out.println("Haut");
 	  		        	((Menage)menage).changeRobotDirection(new Vecteur(0,-1));
 	  		        }
-	  		        if (res.equals(Direction.Down.toString())){
+	  		        if (res.equals(Action.Down.toString())){
 	  		        	System.out.println("Bas");
 	  		        	((Menage)menage).changeRobotDirection(new Vecteur(0,1));
+	  		        }
+	  		        if (res.equals(Action.Pause.toString())){
+	  		        	System.out.println("Pause");
+	  		        	((Menage)menage).pauseResume();
 	  		        }
 	  		        /*if (event.getCode()==KeyCode.RIGHT) ((Menage)menage).changeRobotDirection(new Vecteur(1,0));
 	  		        if (event.getCode()==KeyCode.UP) ((Menage)menage).changeRobotDirection(new Vecteur(0,-1));
